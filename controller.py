@@ -1,5 +1,33 @@
 import view
+import read
+import record
 
+last_id = 0
+data = read.get_data(sample_data_base.txt, ",") 
+
+# view.menu()
+# view.new_contact()
+# view.search_contact():  имя, фамилия, отчество, телефон
+# view.edit_contact() 
+
+def main_logic(): 
+    # value или user_choice
+    
+    user_choice = view.main_menu() # возвращает цифру
+# "Phone book: \n"             
+# "1. Show all records\n"      
+# "2. Add a record\n"          
+# "3. Search a record\n"       
+# "4. Change\n"                
+# "5. Delete\n"                
+# "6. Exp/Imp\n"               
+# "7. Exit\n") )  
+    while user_choice != 7 : 
+        if user_choice == 1 : 
+            view.show_all_contact()
+        elif user_choice == 2: 
+            new_contact = view.add_new_contact() # вернет словарь с 'id': '' и данными нового контакта
+            add_contact (new_contact)
 # Метод show_all принимает на вход список словарей вида 
 # [{"ID":<Номер записи>, "Name":<Имя_чел>, "Surname":<Отчество>, ... "Tel":<Телефон>}, 
 # {}, {}, ... {}] и передает его в модуль view для вывода на экран
@@ -42,17 +70,19 @@ def find_by_telephone (data) :
     view.show_data(records_of_interest) 
     return records_of_interest
 
-def add_new_contact (data) : 
+def add_contact (contact) : 
     new_contact = view.get_new_contact() 
 # Функция get_new_contact должна возвращать словарь с данными нового контакта 
 # с ключом (last_id+1), если у нас last_id - глобальная для всех модулей
-    indeed_new = True
-    for i in range(len(data)) : 
-        if data[i] == new_contact : 
-            indeed_new = False
-            view.message("Такая запись уже существует.")
+    while i in range(len(data)) : 
+        is_same_contact = 0
+        # [i for i in data if value in i.values()]
+        for j in {'surname','name','patronymic','phone','contact'} : 
+            is_same_contact += (data[i][j] == new_contact[j])
+        if is_same_contact == 5 : 
+            view.message(f"Такая запись уже существует. Ее идентификатор равен {i}.\n")
             break
-    if indeed_new : 
-        data = data.append(new_contact)
+    else: 
         last_id += 1
+        
     return data
