@@ -20,8 +20,8 @@ def main_menu():
 
 #main_menu()
 
-def show_all_contact(): #(data)
-    contact_in = {'id': '', 'surname': '65156', 'name': 'Hyt', 'patronymic': 'UHT', 'phone': '651', 'comment': 'jkhlj'} # входные значения контакта
+def show_all_contact(contact_in): #(data)
+    contact_in = {'id': ''} # входные значения контакта
     contact_out = [] # данные на ввод
 
     for i in range(len(contact_in)):
@@ -51,15 +51,14 @@ def add_new_contact():
 #add_new_contact()
 
 def search_contact():
-    print("Your can search a contact by surname, name, patronymic, phone number: ")
-    search_by = input("Write here: ")
+    search_by = input("You can search a contact by surname, name, patronymic, phone number:  ")
     return search_by
 
 #search_contact()
 
-def change_contact(): 
-    changing = input('What a contact do you want to change? Input a phone number: ')
-    controller_f(changing) #отправляет данные на контроллер
+def change_contact(change_awnswer, data_change):
+    changing = input('What a contact do you want to change? Input a phone number: ') # string with param for search
+    return #отправляет данные на контроллер
     if controller_f(changing) == 0: # получение ответа от контроллера если такой номер существует или нет
         print('The phone number is absent')
     else:
@@ -79,10 +78,9 @@ def change_contact():
             data_change = input("Input a phone number: ")
         elif change_awnswer == 5:     
             data_change = input("Input a comment: ")
-        #print(data_change)
-        return data_change
+        return change_awnswer, data_change
 
-#change_contact()
+
 
 def delete_contact():
     deleting = input('What a contact do you want to delete? Input a phone number: ')

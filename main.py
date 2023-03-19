@@ -1,4 +1,3 @@
-'''
-for initial commit
+import controller
 
-'''
+controller.main_logic()
